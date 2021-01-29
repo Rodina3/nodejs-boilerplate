@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import loadConfig from './config';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
@@ -18,7 +17,6 @@ import { ValidationPipe } from './common/pipe/validation.pipe';
   ],
   controllers: [AppController],
   providers: [
-    AppService,
     {
       provide: APP_FILTER,
       useClass: ValidationExceptionFilter,
