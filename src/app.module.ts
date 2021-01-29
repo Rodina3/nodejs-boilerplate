@@ -7,6 +7,7 @@ import { ValidationExceptionFilter } from './common/filter/validation-exception.
 import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 import { ValidationPipe } from './common/pipe/validation.pipe';
 import { CatModule } from './cat/cat.module';
+import { DogModule } from './dog/dog.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CatModule } from './cat/cat.module';
       load: [loadConfig],
     }),
     CatModule,
+    DogModule,
   ],
   controllers: [AppController],
   providers: [
