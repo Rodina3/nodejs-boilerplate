@@ -6,6 +6,7 @@ import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { ValidationExceptionFilter } from './common/filter/validation-exception.filter';
 import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 import { ValidationPipe } from './common/pipe/validation.pipe';
+import { CatModule } from './cat/cat.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ValidationPipe } from './common/pipe/validation.pipe';
       ignoreEnvFile: true,
       load: [loadConfig],
     }),
+    CatModule,
   ],
   controllers: [AppController],
   providers: [
