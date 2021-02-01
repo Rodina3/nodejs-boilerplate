@@ -23,6 +23,10 @@ $ yarn start:dev
 $ yarn start:prod
 ```
 
+## Swagger
+
+Already integrated API documentation. To see all available endpoints visit http://localhost:3000/api-docs
+
 ## Test
 
 [Jest](https://jestjs.io/) and [SuperTest](https://github.com/visionmedia/supertest) are used for unit tests and E2E tests correspondingly as Nest supported.
@@ -33,6 +37,12 @@ $ yarn test
 
 # run test with coverage
 $ yarn test:cov
+```
+
+## Build
+
+```bash
+$ yarn build
 ```
 
 ## Code Style
@@ -51,6 +61,6 @@ $ yarn lint
 The classic [lint-staged](https://github.com/okonet/lint-staged) with [husky](https://github.com/typicode/husky) is used for Git Hooks. It is configured as:
 
 - pre-commit: check typescript and lint all ts files
-- pre-push: run testing
+- pre-push: run testing and coverage
 
 Detailed configuration can be found at `package.json`.
