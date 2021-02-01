@@ -1,17 +1,33 @@
-import { Injectable } from '@nestjs/common';
-import { AddCatDto } from '../controller/dto/add-cat.dto';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CatEntity } from './entity/cat.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class CatService {
+  constructor(
+    @InjectRepository(CatEntity) private catRepository: Repository<CatEntity>,
+  ) {}
+
+  private readonly logger = new Logger('CatService');
+
   retrieveCats() {
-    return 'This action retrieves all cats.';
+    this.logger.log('retrieve all cats');
+    return this.catRepository.find();
   }
 
-  retrieveCatById(id: number) {
-    return `This action retrieve cat by id ${id}`;
+  async retrieveCatById(id: number) {
+    this.logger.log(`retrieve cat by id: ${id}`);
+    const cat = await this.catRepository.findOne(id);
+    if (!cat) {
+      throw new NotFoundException(`cat with id: ${id} not found`);
+    } else {
+      return cat;
+    }
   }
 
-  addCat(addCatDto: AddCatDto) {
-    return `This action adds cat with name: ${addCatDto.name}, age: ${addCatDto.age} and color: ${addCatDto.color}`;
+  addCat(newCatEntity: CatEntity) {
+    this.logger.log(`add cat: ${JSON.stringify(newCatEntity)}`);
+    return this.catRepository.save(newCatEntity);
   }
 }

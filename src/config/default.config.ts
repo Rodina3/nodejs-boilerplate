@@ -1,4 +1,6 @@
-export const ENTITIES = [];
+import { CatEntity } from '../cat/service/entity/cat.entity';
+
+export const ENTITIES = [CatEntity];
 
 export const defaultConfig = {
   app: {

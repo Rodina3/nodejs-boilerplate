@@ -10,6 +10,7 @@ import {
 import { CatService } from '../service/cat.service';
 import { AddCatDto } from './dto/add-cat.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { CatEntity } from '../service/entity/cat.entity';
 
 @ApiTags('Cats API')
 @Controller('cats')
@@ -28,11 +29,13 @@ export class CatController {
 
   @Post()
   addCat(@Body() addCatDto: AddCatDto) {
-    return this.catService.addCat(addCatDto);
+    const { name, age, color } = addCatDto;
+    const newCatEntity = new CatEntity(name, color, age);
+    return this.catService.addCat(newCatEntity);
   }
 
   @Delete(':id')
-  deleteCatById() {
+  removeCatById() {
     throw new NotImplementedException('Not implement yet');
   }
 }
