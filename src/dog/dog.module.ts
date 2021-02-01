@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DogController } from './constroller/dog.controller';
+import { DogController } from './controller/dog.controller';
 import { DogService } from './service/dog.service';
 
 @Module({
