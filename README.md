@@ -28,13 +28,10 @@ $ yarn start:prod
 [Jest](https://jestjs.io/) and [SuperTest](https://github.com/visionmedia/supertest) are used for unit tests and E2E tests correspondingly as Nest supported.
 
 ```bash
-# unit tests
+# unit tests & e2e tests
 $ yarn test
 
-# e2e tests
-$ yarn test:e2e
-
-# test coverage
+# run test with coverage
 $ yarn test:cov
 ```
 
