@@ -20,8 +20,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
   },
   "dependencies": {
     "@nestjs/common": "^7.5.1",
@@ -70,21 +69,38 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
+    "roots": [
+      "src",
+      "test"
+    ],
+    "testRegex": ".*\\.*spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t|j)s",
+      "!**/*.(dto|entity|module).(t|j)s",
+      "!src/config/**/*.(t|j)s",
+      "!src/common/**/*.(t|j)s",
+      "!test/config/**/*.(t|j)s",
+      "!src/app.*.ts",
+      "!src/main.ts"
     ],
-    "coverageDirectory": "../coverage",
+    "coverageDirectory": "coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
     "testEnvironment": "node"
   },
   "husky": {
     "hooks": {
       "pre-commit": "tsc --noEmit && lint-staged",
-      "pre-push": "yarn test && yarn test:e2e"
+      "pre-push": "yarn test:cov"
     }
   },
   "lint-staged": {
