@@ -1,6 +1,6 @@
-export const prodConfig = {
-  app: { port: 3001 },
+export const localConfig = {
   database: {
     url: 'postgresql://postgres:password@localhost:5432/postgres',
+    logging: true,
   },
 };

@@ -8,6 +8,7 @@ import { HttpExceptionFilter } from './common/filter/http-exception.filter';
 import { ValidationPipe } from './common/pipe/validation.pipe';
 import { CatModule } from './cat/cat.module';
 import { DogModule } from './dog/dog.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { DogModule } from './dog/dog.module';
     }),
     CatModule,
     DogModule,
+    DatabaseModule,
   ],
   controllers: [AppController],
   providers: [

@@ -3,6 +3,7 @@ import { defaultConfig } from './default.config';
 import { devConfig } from './dev.config';
 import { prodConfig } from './prod.config';
 import * as _ from 'lodash';
+import { localConfig } from './local.config';
 
 const loadConfig: ConfigFactory = () => {
   const env = process.env.NODE_ENV;
@@ -16,7 +17,7 @@ const loadConfig: ConfigFactory = () => {
       envConfig = prodConfig;
       break;
     default:
-      envConfig = {};
+      envConfig = localConfig;
       break;
   }
   return _.merge(defaultConfig, envConfig);
